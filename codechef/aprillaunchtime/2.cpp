@@ -1,3 +1,6 @@
+// does not work :(
+// https://www.codechef.com/LTIME83B/problems/SHUFFLE
+
 #include <bits/stdc++.h>
 
 using namespace std;
