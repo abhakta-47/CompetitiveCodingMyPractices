@@ -1,10 +1,15 @@
+// https://codeforces.com/contest/1342/problem/C
 #include <bits/stdc++.h>
 
 using namespace std;
 
-#define ll unsigned long long
-
-int func()
+#define ll long long
+ll func2(ll lcm, ll x)
+{
+    ll n = 0;
+    n = x / lcm * (b - a);
+}
+ll func()
 {
     ll a, b, q;
     cin >> a >> b >> q;
