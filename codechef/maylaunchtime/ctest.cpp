@@ -4,118 +4,117 @@ using namespace std;
 
 #define ll long long
 
-vector<ll> v, bl, br;
-ll l_l, l_r, l_f, x, y, l, r, p;
+//ll l_l, l_r, l_f, x, y, l, r, p;
+ll x, y, l, r;
+set<ll> bx, by, bl, br, bans;
 
-vector<ll> decToBinary(ll n)
+set<ll> decToBinary(ll n)
 {
-
-    vector<ll> t;
+    set<ll> t;
     t.clear();
     int i = 0;
-    if (n == 0)
-        t.push_back(0);
     while (n > 0)
     {
-        t.push_back(n % 2);
+        if (n % 2 == 1) //{
+            t.insert(i);
+        //cout<<i<<" ";}
         n = n / 2;
         i++;
     }
     return t;
 }
 
-ll func4(ll t)
-{
-    return (x & t) * (y & t);
-}
-
-ll func2(ll n, bool sr, bool gl)
-{
-
-    ll t, bit_l, bit_r, bit_f, ans = 0, i;
-    p = n - 1;
-    bool flag = true;
-
-    for (i = n - 1; i >= 0; i--)
-    {
-
-        bit_l = (i >= l_l) ? 0 : bl[i];
-        bit_f = (i >= l_f) ? 0 : v[i];
-        bit_r = (i >= l_r) ? 0 : br[i];
-
-        // sg smaller than greater && gs greater than smaller
-
-        if (bit_r == 1)
-            t = bit_f;
-        else
-        {
-            if (sr)
-                t = bit_f;
-            else
-                t = 0;
-        }
-
-        if (t < bit_r)
-            sr = true;
-
-        if (bit_r == 1 && bit_f == 1 && flag)
-        {
-            p = i;
-            flag = false;
-        }
-
-        ans += t * pow(2, i);
-    }
-
-    if (func4(ans) == 0)
-        ans = l;
-
-    return ans;
-}
-ll max2(ll t1, ll t2)
-{
-    ll ans;
-    if (func4(t1) > func4(t2))
-        ans = t1;
-    else if (func4(t2) > func4(t1))
-        ans = t2;
-    else
-        ans = min(t1, t2);
-    return ans;
-}
 int func()
 {
-    l = 0;
+    cout << "in func " << x << y << l << r << " ";
+    bx.clear();
+    by.clear();
+    bl.clear();
+    br.clear();
+    bans.clear();
+    //ll x, y, l, r;
+    ll ans = 0;
     //cin >> x >> y >> l >> r;
-
-    bl = decToBinary(l);
-    br = decToBinary(r);
-    v = decToBinary(x | y);
-    l_l = bl.size();
-    l_r = br.size();
-    l_f = v.size();
-
-    ll sum = 0;
-    ll i;
-
-    sum = func2(l_r, false, true);
-    ll ans = sum, t;
-    for (i = 0; i < l_r; i++)
+    if (x * y == 0)
+        ans = l;
+    else if (l == r)
+        ans = l;
+    else
     {
-        t = sum - ((i < l_f) ? v[i] : 0) * pow(2, i);
-        if (l <= t && t <= r)
-            ans = max2(t, ans);
+        // always x > y
+        if (x < y)
+        {
+            x = x + y;
+            y = x - y;
+            x = x - y;
+        }
+
+        // binarise
+        bx = decToBinary(x);
+        by = decToBinary(y);
+        bl = decToBinary(l);
+        br = decToBinary(r);
+
+        // main Calculations
+
+        ll xbit, ybit, lbit, rbit;
+        bool flag = false;
+        for (ll i = *(--bl.end()); i >= 0; --i)
+        {
+            rbit = (br.find(i) == br.end()) ? 0 : 1;
+            lbit = (bl.find(i) == bl.end()) ? 0 : 1;
+            xbit = (bx.find(i) == bx.end()) ? 0 : 1;
+            ybit = (by.find(i) == by.end()) ? 0 : 1;
+
+            if (flag)
+            { // if ans is already less than r
+                if (xbit == 1 || ybit == 1)
+                    bans.insert(i);
+            }
+            else
+            {
+                if (rbit == 1)
+                {
+                    if (xbit == 1 && ybit == 1)
+                        bans.insert(i);
+                    else if (xbit == 1)
+                    {
+                        ll t1 = *(--bx.lower_bound(i)) + *(--by.lower_bound(i));
+                        ll t2 = *(--br.lower_bound(i));
+                        t2 = *(--by.upper_bound(t2)) + i;
+                        if (t2 > t1)
+                            bans.insert(i);
+                    }
+                    else if (ybit == 1)
+                    {
+                        ll t1 = *(--bx.lower_bound(i)) + *(--by.lower_bound(i));
+                        ll t2 = *(--br.lower_bound(i));
+                        t2 = *(--bx.upper_bound(t2)) + i;
+                        if (t2 > t1)
+                            bans.insert(i);
+                    }
+                }
+            }
+
+            // if ans is already less than r
+            if (rbit == 1 && bans.find(i) == bans.end())
+                flag = true;
+        }
+
+        set<ll>::iterator itr;
+
+        for (itr = bans.begin(); itr != bans.end(); itr++)
+            ans += pow(2, *itr);
     }
-    if (l_r > 1)
-        ans = max2(ans, func2(l_r - 1, true, true));
+
     return ans;
-    return 0;
 }
 
 int main()
 {
     // ios_base::sync_with_stdio(false);
     // cin.tie(NULL);
+    cout << "in";
     ll maxv, maxans, t, ans;
     l = 0;
     //cin >> x >> y >> l >> r;
@@ -136,14 +135,16 @@ int main()
                     maxv = t;
                     maxans = i;
                 }
-                br.clear();
-                bl.clear();
-                v.clear();
                 ans = func();
+                //if (ans != maxans)
+                cout << "x-" << x << "  y-" << y << "  z-" << i << "  x&z-" << (x & i) << "  y&z-" << (y & i) << "  x&z*y&z-" << t << "  ans-" << maxans << "  myAns-" << ans; // << "\n";
                 if (ans != maxans)
-                    cout << x << " " << y << " " << i << " " << t << " " << maxans << " " << ans << "\n";
-                if ((ans - maxans) > 10 || (maxans - ans) > 10)
-                    cout << "*";
+                    cout << " no";
+                else
+                    cout << " yes";
+                // if ((ans - maxans) > 10 || (maxans - ans) > 10)
+                //     cout << "*";
+                cout << "\n";
             }
         }
     }
