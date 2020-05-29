@@ -1,0 +1,4 @@
+.vscode/
+*.exe
+*.txt
+cp.code-workspace
