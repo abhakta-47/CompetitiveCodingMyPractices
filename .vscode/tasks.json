@@ -36,7 +36,7 @@
             "args": [
                 "&&",
                 "type",
-                "${fileDirname}\\input.txt",
+                "${workspaceFolder}\\input.txt",
                 "|",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
                 "&&",
@@ -57,12 +57,13 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "g++.exe build active file working",
-                "run it",
+                "run it"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
-        },
+            },
+            "problemMatcher": []
+        }
     ]
 }
