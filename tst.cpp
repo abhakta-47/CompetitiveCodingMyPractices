@@ -1,19 +1,67 @@
-// CPP program to find the
-// blocks for given number.
 #include <bits/stdc++.h>
+
 using namespace std;
+
+#define ll long int
+
+#define repp(i, b) for (ll i = 0; i < (b); i++)
 
 int main()
 {
-    vector<int> v, v1;
-    for (int i = 0; i <= 5; i++)
+
+    ll n, m;
+
+    cin >> n >> m;
+
+    ll arr[n];
+
+    repp(i, n)
     {
-        v.push_back(i);
+
+        cin >> arr[i];
     }
-    //v.resize(5, 1);
-    v.resize(7, 2);
-    for (int i = 0; i < v.size(); i++)
+
+    repp(i, m)
     {
-        cout << v[i];
+
+        ll x;
+
+        cin >> x;
+
+        if (x == 1)
+        {
+
+            ll sw;
+
+            cin >> sw;
+
+            arr[sw - 1] ^= 1;
+        }
+
+        else
+        {
+
+            ll l, r;
+
+            cin >> l >> r;
+
+            if (arr[r - 1] & 1)
+            {
+
+                cout << "ODD"
+                     << "\n"
+                     << endl;
+            }
+
+            else
+            {
+
+                cout << "EVEN"
+                     << "\n"
+                     << endl;
+            }
+        }
     }
+
+    return 0;
 }

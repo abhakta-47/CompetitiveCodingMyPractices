@@ -2,19 +2,15 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558 
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "tasks": [
-        {
+    "tasks": [{
             "type": "shell",
             "label": "g++.exe build active file working",
-            "command": "C:\\MinGW\\bin\\g++.exe",
+            "command": "g++",
             "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${file}"
             ],
             "options": {
-                "cwd": "C:\\MinGW\\bin"
+                // "cwd": "C:/MinGW/bin"
             },
             "problemMatcher": [
                 "$gcc"
@@ -32,16 +28,34 @@
         {
             "label": "run it",
             "type": "shell",
-            "command": "echo........",
+            "command": "echo",
             "args": [
-                "&&",
-                "type",
-                "${workspaceFolder}\\input.txt",
-                "|",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "....................",
                 "&&",
                 "echo",
-                "done..."
+                "&&",
+                "cat",
+                "${workspaceFolder}/input.txt",
+                "|",
+                "./a.out",
+                "&&",
+                "echo"
+            ],
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "label": "test",
+            "type": "shell",
+            "command": "cd",
+            "args": [
+                "${fileDirname}", "&&", "ls"
             ],
             "presentation": {
                 "echo": false,
@@ -58,6 +72,7 @@
             "dependsOn": [
                 "g++.exe build active file working",
                 "run it"
+                // "test"
             ],
             "group": {
                 "kind": "build",
