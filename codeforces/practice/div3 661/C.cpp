@@ -7,25 +7,33 @@ using namespace std;
 
 int func()
 {
+
     int n;
     cin >> n;
-    int a[n];
-    for (int i = 0; i < n; i++)
+    int a[2 * n + 1] = {0};
+    int i, x;
+
+    for (i = 0; i < n; i++)
     {
-        cin >> a[i];
+        cin >> x;
+        ++a[x];
     }
 
-    sort(a, a + n);
-
-    for (int i = 0; i < n-1; i++)
+    int s, k, ans = 0;
+    for (s = 2; s <= 2 * n; s++)
     {
-        if (a[i + 1] - a[i] > 1)
+        k = 0;
+        for (i = 1; i <= n; i++)
         {
-            cout << "NO";
-            return 0;
+            if (s - i > n || s - i < 0)
+                continue;
+            k += min(a[i], a[s - i]);
         }
+        ans = max(ans, k);
     }
-    cout << "YES";
+
+    cout << ans / 2;
+
     return 0;
 }
 

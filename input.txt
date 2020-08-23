@@ -1,17 +1,12 @@
-14
-S P P P P P P T P T P P P P
-P P T P T P T P P E P T T P
-T T P P P T P T P T T P P T
-P P P T P T T P P P P P T P
-P P T P P P P T P T T P P T
-T T P T P T P P T P T P T P
-P P P P P T P T P P P P P P
-T P T P T P P P T P T P T T
-T T P T T P T T P P P T P T
-P P T P P P T P T P T P P P
-P T P P T T P T T P T P P T
-T P T P T P P P P P P P T P
-P T P P P P T P P T P T P T
-P P T P T P P T T P P P T P
+3
+5
+1 5 100 500 1
+8
+2 3 4 5 6 7 8 9
+10
+2 3 4 3 2 1 1 5 3 1
 
-23 22 8
+  2 3 4
+1 2 3
+1 5
+3

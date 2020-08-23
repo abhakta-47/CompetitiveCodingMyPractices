@@ -6,15 +6,15 @@ using namespace std;
 
 #define ll long long
 #define pb push_back
-
+typedef pair<int, int> iPair;
 class Graph
 {
     int V; // No. of vertices
 
     //graph containing vector
     vector<vector<int>> adj;
+    vector<pair<int, iPair>> adj_wprice;
     vector<bool> visited;
-
     // A recursive function used by DFS
     void DFSUtil(int v)
     {
@@ -40,6 +40,7 @@ public:
     {
         this->V = V;
         adj.resize(V + 1);
+        adj_wprice.resize(V + 1);
         node_distants.resize(V + 1);
         visited.resize(V + 1, false);
     }
@@ -47,9 +48,19 @@ public:
     void addEdge(int v, int w)
     {
         // //cout << "joining " << v << " " << w << " ";
-        adj[v].push_back(w); // Add w to v’s list.
-        adj[w].push_back(v); // for non-direcrted graph
+        adj[v].pb(w); // Add w to v’s list.
+        adj[w].pb(v); // for non-direcrted graph
         // //cout << adj[v].size() << " " << adj[v][adj[v].size() - 1] << " " << adj[w].size() << " " << adj[w][adj[w].size() - 1] << "\n";
+    }
+
+    void addEdge(int v, int w, int p)
+    {
+        //cout << "joining " << v << " " << w << " ";
+        adj[v].pb(w); // Add w to v’s list.
+        adj[w].pb(v); // for non-direcrted graph
+        //cout << adj[v].size() << " " << adj[v][adj[v].size() - 1] << " " << adj[w].size() << " " << adj[w][adj[w].size() - 1] << "\n";
+        adj_wprice.pb({p, {v, w}});
+        adj_wprice.pb({p, {w, v}});
     }
 
     void visitReset()
@@ -181,13 +192,14 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t, i;
-    t = 1;
-    // cin >> t;
-    for (i = 0; i < t; i++)
-    {
-        ////cout<<"Case #"<<i+1<<": ";
-        func();
-        cout << "\n";
-    }
+    Graph g(5);
+    // int t, i;
+    // t = 1;
+    // // cin >> t;
+    // for (i = 0; i < t; i++)
+    // {
+    //     ////cout<<"Case #"<<i+1<<": ";
+    //     func();
+    //     cout << "\n";
+    // }
 }

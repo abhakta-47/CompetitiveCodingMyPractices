@@ -1,5 +1,2 @@
-.vscode/
-*.exe
-*.txt
 *.out
-cp.code-workspace
+*.txt

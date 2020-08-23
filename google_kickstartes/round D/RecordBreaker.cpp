@@ -9,23 +9,25 @@ int func()
 {
     int n;
     cin >> n;
-    int a[n];
-    for (int i = 0; i < n; i++)
-    {
+    int i, a[n];
+    for (i = 0; i < n; i++)
         cin >> a[i];
-    }
 
-    sort(a, a + n);
-
-    for (int i = 0; i < n-1; i++)
+    int ans = 0, x, max_ = -1;
+    for (i = 0; i < n; i++)
     {
-        if (a[i + 1] - a[i] > 1)
+        if (i == n - 1 && a[i] > max_)
         {
-            cout << "NO";
-            return 0;
+            ++ans;
+            continue;
         }
+        if (a[i] > max_ && a[i] > a[i + 1])
+            ++ans;
+        max_ = max(a[i], max_);
     }
-    cout << "YES";
+
+    cout << ans;
+
     return 0;
 }
 
@@ -38,7 +40,7 @@ int main()
     cin >> t;
     for (i = 0; i < t; i++)
     {
-        //cout<<"Case #"<<i+1<<": ";
+        cout << "Case #" << i + 1 << ": ";
         func();
         cout << "\n";
     }

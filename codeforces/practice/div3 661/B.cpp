@@ -2,30 +2,34 @@
 
 using namespace std;
 
-long long func()
+#define ll long long
+#define pb push_back
+
+ll func()
 {
-    long long n;
+    ll n;
     cin >> n;
-    long long a[2][n], i, min_a = 2147483647, min_b = 2147483647;
-    for (i = 0; i < n; i++)
+    ll a[n], b[n], a_min = INT_MAX, b_min = INT_MAX;
+    for (ll i = 0; i < n; i++)
     {
-        cin >> a[0][i];
-        min_a = min(min_a, a[0][i]);
+        cin >> a[i];
+        a_min = min(a_min, a[i]);
     }
-    for (i = 0; i < n; i++)
+
+    for (ll i = 0; i < n; i++)
     {
-        cin >> a[1][i];
-        min_b = min(min_b, a[1][i]);
+        cin >> b[i];
+        b_min = min(b_min, b[i]);
     }
-    long ans = 0;
-    // cout << min_a << " " << min_b << "\n";
-    for (i = 0; i < n; i++)
+
+    ll ans = 0;
+
+    for (ll i = 0; i < n; i++)
     {
-        // cout << "   " << max(a[0][i] - min_a, a[1][i] - min_b) << "\n";
-        ans += max(a[0][i] - min_a, a[1][i] - min_b);
-        // cout << "  " << ans << " ";
+        ans += max((a[i] - a_min), (b[i] - b_min));
     }
     cout << ans;
+
     return 0;
 }
 
@@ -33,12 +37,12 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    long long t, i;
+    ll t, i;
     //t=1;
     cin >> t;
     for (i = 0; i < t; i++)
     {
-        cout<<"Case #"<<i+1<<": ";
+        //cout<<"Case #"<<i+1<<": ";
         func();
         cout << "\n";
     }
