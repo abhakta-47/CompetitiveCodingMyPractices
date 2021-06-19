@@ -50,7 +50,6 @@ struct DisjointSets
         for (int i = 0; i <= n; i++)
         {
             rnk[i] = 0;
-
             //every element is parent of itself
             parent[i] = i;
         }
@@ -132,23 +131,14 @@ int main()
     /* Let us create above shown weighted 
 	and unidrected graph */
     int V = 9, E = 14;
+    cin>>V>>E;
     Graph g(V, E);
-
+    int u,v,w;
     // making above shown graph
-    g.addEdge(0, 1, 4);
-    g.addEdge(0, 7, 8);
-    g.addEdge(1, 2, 8);
-    g.addEdge(1, 7, 11);
-    g.addEdge(2, 3, 7);
-    g.addEdge(2, 8, 2);
-    g.addEdge(2, 5, 4);
-    g.addEdge(3, 4, 9);
-    g.addEdge(3, 5, 14);
-    g.addEdge(4, 5, 10);
-    g.addEdge(5, 6, 2);
-    g.addEdge(6, 7, 1);
-    g.addEdge(6, 8, 6);
-    g.addEdge(7, 8, 7);
+    for(int i=0; i<E; i++){
+        cin>>u>>v>>w;
+        g.addEdge(u,v,w);
+    }
 
     cout << "Edges of MST are \n";
     int mst_wt = g.kruskalMST();

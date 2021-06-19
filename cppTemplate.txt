@@ -2,9 +2,11 @@
 
 using namespace std;
 
-int func(){
+#define ll long long
 
-    return 0;
+void sol(){
+
+    return;
 }
 
 int main(){
@@ -12,9 +14,9 @@ int main(){
     cin.tie(NULL);
     int t,i;
     cin>>t;
-    for(i=0;i<t;i++){
+    while(t--){
         //cout<<"Case #"<<i+1<<": ";
-        func();
+        sol();
         cout<<"\n";
     }
 }

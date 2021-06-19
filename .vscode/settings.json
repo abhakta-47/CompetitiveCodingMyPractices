@@ -57,5 +57,29 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "terminal.integrated.shell.windows": "",
+    "workbench.colorCustomizations" : {
+        "terminal.ansiBlack": "#000000",
+        "terminal.ansiRed": "#ff628c",
+        "terminal.ansiGreen": "#3ad900",
+        "terminal.ansiYellow": "#ffc600",
+        "terminal.ansiBlue": "#0088ff",
+        "terminal.ansiMagenta": "#fb94ff",
+        "terminal.ansiCyan": "#80fcff",
+        "terminal.ansiWhite": "#ffffff",
+        "terminal.ansiBrightBlack": "#0050A4",
+        "terminal.ansiBrightRed": "#ff628c",
+        "terminal.ansiBrightGreen": "#3ad900",
+        "terminal.ansiBrightYellow": "#ffc600",
+        "terminal.ansiBrightBlue": "#0088ff",
+        "terminal.ansiBrightMagenta": "#fb94ff",
+        "terminal.ansiBrightCyan": "#80fcff",
+        "terminal.ansiBrightWhite": "#193549",
+        "terminal.background": "#122738",
+        "terminal.foreground": "#ffffff",
+        "terminalCursor.background": "#ffc600",
+        "terminalCursor.foreground": "#ffc600"
+    },
+    "terminal.integrated.fontWeight": "normal"
 }
