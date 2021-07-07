@@ -1,49 +1,55 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 #define ll long long
 #define pb push_back
 
-void sol(){
+void sol()
+{
     ll n;
-    cin>>n;
+    cin >> n;
     ll h[n];
-    for(int i=0;i<n;i++)
-        cin>>h[i];
-    sort(h,h+n);
-    
-    ll minDif=h[1]-h[0];
-    for(int i=1;i<n-1;i++)
-        minDif = min( minDif, h[i+1]-h[i]);
+    for (int i = 0; i < n; i++)
+        cin >> h[i];
+    sort(h, h + n);
 
-    if(minDif == h[1]-h[0])
-        swap(h[1],h[n-1]);
-    else if( minDif == h[n-1]-h[n-2])
-        swap(h[0],h[n-2]);
-    else{
-        for(int i=0; i<n-1;i++)
-            if(minDif == h[i+1]-h[i]){
-                swap(h[0], h[i]);
-                swap(h[i+1], h[n-1]);
-                swap(h[i], h[i+1]);
-            }
+    if (n == 2)
+    {
+        cout << h[0] << " " << h[1];
+        return;
     }
-    for(auto hi : h)
-        cout<<hi<<" ";
+
+    ll minDif = h[1] - h[0];
+    for (int i = 1; i < n - 1; i++)
+        minDif = min(minDif, h[i + 1] - h[i]);
+
+    int x;
+    for (int i = 0; i < n - 1; i++)
+        if (h[i + 1] - h[i] == minDif)
+        {
+            for (int j = i + 1; j < n; j++)
+                cout << h[j] << " ";
+            for (int j = 0; j <= i; j++)
+                cout << h[j] << " ";
+            break;
+        }
+
     return;
 }
 
-int main(){
+int main()
+{
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
     int t;
-    t=1;
-    cin>>t;
-    while(t--){
+    t = 1;
+    cin >> t;
+    while (t--)
+    {
         //cout<<"Case #"<<i+1<<": ";
         sol();
-        cout<<"\n";
+        cout << "\n";
     }
 }
