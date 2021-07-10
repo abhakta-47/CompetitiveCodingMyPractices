@@ -7,42 +7,43 @@ using namespace std;
 
 void sol()
 {
-
     string s;
     cin >> s;
-    int posa;
-    set<char> ss;
+    vector<pair<char, int>> m;
+    int l, r;
     for (int i = 0; i < s.length(); i++)
+        m.push_back({s[i], i});
+    // m[s[i]] = i;
+    sort(m.begin(), m.end());
+    int k = 0, curp;
+    for (auto im : m)
     {
-        if (s[i] == 'a')
+        // cout << im.second << " ";
+        if (im.first != (int('a') + k))
         {
-            posa = i;
-        }
-        ss.insert(s[i]);
-    }
-    int k = 0;
-    for (auto i : ss)
-    {
-        if (i != int('a') + k)
-        {
+            // cout << im.first;
             cout << "NO";
             return;
         }
         ++k;
+        curp = im.second;
+        if (im.first == 'a')
+        {
+            l = curp;
+            r = curp;
+            continue;
+        }
+        if (curp - r == 1)
+            r = curp;
+        else if (l - curp == 1)
+            l = curp;
+        else
+        {
+            cout << "NO";
+            return;
+        }
+        // cout << im.first;
     }
-    for (int i = posa; i < s.length() - 1; i++)
-        if (s[i] >= s[i + 1])
-        {
-            cout << "NO";
-            return;
-        }
-
-    for (int i = 0; i < posa; i++)
-        if (s[i] <= s[i + 1])
-        {
-            cout << "NO";
-            return;
-        }
     cout << "YES";
     return;
 }
