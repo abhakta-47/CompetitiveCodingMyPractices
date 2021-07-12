@@ -5,62 +5,30 @@ using namespace std;
 #define ll long long
 #define pb push_back
 
-void sieveOfEratosthenes(int N, int s[])
+const ll N = 1'0;
+vector<ll> primes;
+
+void sieveOfEratosthenes()
 {
-    vector<bool> prime(N + 1, false);
-    for (int i = 2; i <= N; i += 2)
-        s[i] = 2;
+    bool isPrime[N + 1];
+    memset(isPrime, true, sizeof(isPrime));
+    isPrime[0] = false;
+    isPrime[1] = false;
+    primes.push_back(2);
     for (int i = 3; i <= N; i += 2)
-    {
-        if (prime[i] == false)
+        if (isPrime[i] == true)
         {
-            s[i] = i;
-            for (int j = i; j * i <= N; j += 2)
-            {
-                if (prime[i * j] == false)
-                {
-                    prime[i * j] = true;
-                    s[i * j] = i;
-                }
-            }
+            primes.push_back(i);
+            for (int j = 2 * i; j <= N; j += i)
+                isPrime[j] = false;
         }
-    }
-}
-
-void generatePrimeFactors(int N)
-{
-    // s[i] is going to store smallest prime factor
-    // of i.
-    int s[N + 1];
-
-    // Filling values in s[] using sieve
-    sieveOfEratosthenes(N, s);
-
-    printf("Factor Power\n");
-
-    int curr = s[N]; // Current prime factor of N
-    int cnt = 1;     // Power of current prime factor
-
-    while (N > 1)
-    {
-        N /= s[N];
-        if (curr == s[N])
-        {
-            cnt++;
-            continue;
-        }
-
-        printf("%d\t%d\n", curr, cnt);
-        curr = s[N];
-        cnt = 1;
-    }
 }
 
 void sol()
 {
     int a, b, k;
     cin >> a >> b >> k;
-    int gcd_ab = __gcd(a, b);
+    // cout << a << b << k;
 
     return;
 }
@@ -72,11 +40,14 @@ int main()
     cout.tie(NULL);
     int t;
     t = 1;
-    cin >> t;
-    while (t--)
-    {
-        //cout<<"Case #"<<i+1<<": ";
-        sol();
-        cout << "\n";
-    }
+    sieveOfEratosthenes();
+    for (auto i : primes)
+        cout << i << " ";
+    //     cin >> t;
+    //     while (t--)
+    //     {
+    //         //cout<<"Case #"<<i+1<<": ";
+    //         sol();
+    //         cout << "\n";
+    //     }
 }
