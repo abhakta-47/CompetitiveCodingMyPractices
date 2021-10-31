@@ -3,3 +3,6 @@ input.txt
 *.txt
 *.out
 
+input.txt
+tst.cpp
+tst2.cpp

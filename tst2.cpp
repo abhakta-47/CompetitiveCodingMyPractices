@@ -1,38 +1,31 @@
-#include <bits/stdc++.h>
+void DFS(vector<pair<int, int>> graph[], int src, int prev_len, int *max_len,
+         vector<bool> &visited) {
+    visited[src] = 1;
+    int curr_len = 0;
+    pair<int, int> adjacent;
 
-using namespace std;
+    for (int i = 0; i < graph[src].size(); i++) {
+        adjacent = graph[src][i];
 
-#define ll long long
-#define pb push_back
+        if (!visited[adjacent.first]) {
+            curr_len = prev_len + adjacent.second;
+            DFS(graph, adjacent.first, curr_len, max_len, visited);
+        }
 
-int depth(vector<int> *v, int curNode, int level)
-{
-    if (v[curNode].size() == 0)
-        return level;
-    int curLevel = level;
-    for (auto iv : v[curNode])
-    {
-        curLevel = max(curLevel, depth(v, iv, level + 1));
+        if ((*max_len) < curr_len)
+            *max_len = curr_len;
+
+        curr_len = 0;
     }
-    return curLevel;
 }
 
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    int n, x;
-    cin >> n;
-    vector<int> v[n];
-    int root;
-    for (int i = 0; i < n; i++)
-    {
-        cin >> x;
-        if (x == -1)
-            root = i;
-        else
-            v[x].push_back(i);
+int longestCable(vector<pair<int, int>> graph[], int n) {
+    int max_len = INT_MIN;
+
+    for (int i = 1; i <= n; i++) {
+        vector<bool> visited(n + 1, false);
+        DFS(graph, i, 0, &max_len, visited);
     }
-    cout << depth(v, root, 1) << "\n";
+
+    return max_len;
 }
