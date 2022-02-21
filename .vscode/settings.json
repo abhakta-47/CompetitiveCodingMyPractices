@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "config": "bat",
         "array": "cpp",
         "atomic": "cpp",
         "*.tcc": "cpp",
@@ -57,7 +58,35 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "valarray": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "any": "cpp",
+        "barrier": "cpp",
+        "bit": "cpp",
+        "charconv": "cpp",
+        "codecvt": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "coroutine": "cpp",
+        "cuchar": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "algorithm": "cpp",
+        "iterator": "cpp",
+        "memory": "cpp",
+        "memory_resource": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "source_location": "cpp",
+        "string_view": "cpp",
+        "latch": "cpp",
+        "numbers": "cpp",
+        "ranges": "cpp",
+        "semaphore": "cpp",
+        "shared_mutex": "cpp",
+        "span": "cpp",
+        "stop_token": "cpp",
+        "syncstream": "cpp",
+        "variant": "cpp"
     },
     "terminal.integrated.shell.windows": "",
     "workbench.colorCustomizations" : {
@@ -82,5 +111,8 @@
         "terminalCursor.background": "#ffc600",
         "terminalCursor.foreground": "#ffc600"
     },
-    "terminal.integrated.fontWeight": "normal"
+    "terminal.integrated.fontWeight": "normal",
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "C_Cpp.default.cppStandard": "c++17",
+    "editor.wordWrap": "on"
 }

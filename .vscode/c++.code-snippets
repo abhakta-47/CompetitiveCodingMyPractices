@@ -16,7 +16,7 @@
 	// 	"description": "Log output to console"
 	// }
 	"cpp cp template": {
-		"prefix": "template",
+		"prefix": "cp template",
 		"body": [
 			"#include <bits/stdc++.h>",
 			"",
@@ -46,6 +46,42 @@
 			"        sol();",
 			"        // clog<<\"\\n\";",
 			"        cout << \"\\n\";",
+			"    }",
+			"}",
+			""
+		],
+		"description": "cpp cp template"
+	},
+	"google cp template": {
+		"prefix": "template google",
+		"body": [
+			"#include <bits/stdc++.h>",
+			"",
+			"using namespace std;",
+			"",
+			"#define ll long long",
+			"#define pb push_back",
+			"#define loop(i, x, n) for (int i = x; i < n; i++)",
+			"",
+			"void sol() {",
+			"    ll ${2:n};",
+			"    cin >> ${2:n};",
+			"    ${3}",
+			"",
+			"    return;",
+			"}",
+			"",
+			"int main() {",
+			"    ios_base::sync_with_stdio(false);",
+			"    cin.tie(NULL);",
+			"    cout.tie(NULL);",
+			"    int t;",
+			"    t = 1;",
+			"    ${1}cin >> t;",
+			"    for (int i = 0; i < t; i++) {",
+			"        cout << \"Case #\" << i + 1 << \": \";",
+			"        sol();",
+			"        cout<<\"\\n\";",
 			"    }",
 			"}",
 			""
@@ -239,5 +275,19 @@
 			"}"
 		],
 		"description": "Largest Sum Contiguous Subarray"
-	}
+	},
+	"loop cp": {
+		"prefix": "loop cp",
+		"body": [
+		  "loop( $1, $2, $3) "
+		],
+		"description": "loop"
+	  },
+	"loop standard": {
+		"prefix": "loop standard",
+		"body": [
+		  "loop( i, 0, n) "
+		],
+		"description": "loop"
+	  },
 }
