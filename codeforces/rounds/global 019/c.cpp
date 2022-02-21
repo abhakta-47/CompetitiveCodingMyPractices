@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define ll long long
+#define pb push_back
+#define loop(i, x, n) for (int i = x; i < n; i++)
+
+void sol() {
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
+    loop(i, 0, n) cin >> a[i];
+    ll even = 0, odd = 0, ops = 0;
+    bool flg1 = false;
+    loop(i, 1, n - 1) if (a[i] != 1) {
+        flg1 = true;
+        break;
+    }
+    if (!flg1) {
+        cout << -1;
+        return;
+    }
+    loop(i, 1, n - 1) {
+        ops += a[i] / 2;
+        a[0] += ops;
+        a[n - 1] += ops;
+        a[i] = a[i] % 2;
+        if (a[i])
+            ++odd;
+        else
+            ++even;
+    }
+    if (odd == 0)
+        cout << ops;
+    else {
+        // if (odd == 1)
+        if (n == 3 || (a[0] <= 1 && a[n - 1] <= 1))
+            cout << -1;
+        else
+            cout << ops + odd;
+    }
+
+    return;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    int t;
+    t = 1;
+    cin >> t;
+    for (int i = 0; i < t; i++) {
+        // clog << "Case #" << i + 1 << ": \n";
+        sol();
+        // clog<<"\n";
+        cout << "\n";
+    }
+}
