@@ -7,8 +7,19 @@ using namespace std;
 #define loop(i, x, n) for (int i = x; i < n; i++)
 
 void sol() {
-    ll n;
-    cin >> n;
+    string s;
+    cin >> s;
+    ll n = s.length(), ans = s.length() - 1, i;
+    for (i = 0; i < (n / 2); i++) {
+        if (s[i] == s[n - i - 1])
+            --ans;
+        else
+            break;
+    }
+    if (i == (n / 2))
+        cout << 0;
+    else
+        cout << ans;
 
     return;
 }
