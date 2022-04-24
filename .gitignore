@@ -4,5 +4,6 @@ input.txt
 *.out
 
 input.txt
+tst.c
 tst.cpp
 tst2.cpp
