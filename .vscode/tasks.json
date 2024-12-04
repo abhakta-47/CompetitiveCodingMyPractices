@@ -5,10 +5,11 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "g++.exe build active file working",
+            "label": "g++ build active file",
             "command": "g++",
             "args": [
                 "--std=c++17",
+                "-g",
                 "${file}"
             ],
             "options": {},
@@ -26,7 +27,7 @@
             }
         },
         {
-            "label": "run it",
+            "label": "run executable",
             "type": "shell",
             "command": "echo",
             "args": [
@@ -38,6 +39,8 @@
                 "${workspaceFolder}/input.txt",
                 "|",
                 "./a.out",
+                ">",
+                "${workspaceFolder}/output_temp.txt",
                 "&&",
                 "echo"
             ],
@@ -51,17 +54,17 @@
             }
         },
         {
-            "label": "test",
+            "label": "diff output",
             "type": "shell",
-            "command": "cd",
+            "command": "code",
             "args": [
-                "${fileDirname}",
-                "&&",
-                "ls"
+                "-d",
+                "output.txt",
+                "output_temp.txt"
             ],
             "presentation": {
                 "echo": false,
-                "reveal": "always",
+                "reveal": "never",
                 "focus": false,
                 "panel": "dedicated",
                 "showReuseMessage": false,
@@ -72,33 +75,15 @@
             "label": "c++ build and run together",
             "dependsOrder": "sequence",
             "dependsOn": [
-                "g++.exe build active file working",
-                "run it"
+                "g++ build active file",
+                "run executable",
+                "diff output"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "problemMatcher": []
-        },
-        {
-            "type": "cppbuild",
-            "label": "C/C++: g++ build active file",
-            "command": "/bin/g++",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "compiler: /bin/g++"
         }
     ]
 }
